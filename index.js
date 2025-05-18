@@ -166,7 +166,7 @@ function getDifficultySettings() {
 
     switch (difficulty) {
         case "easy":
-            return { pairs: 3, time: 30 };
+            return { pairs: 3, time: 20 };
         case "medium":
             return { pairs: 6, time: 60 };
         case "hard":
