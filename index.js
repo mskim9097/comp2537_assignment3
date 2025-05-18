@@ -5,6 +5,7 @@ let timer = 30;
 let timerInterval = null;
 let gameOver = false;
 
+// This is function to load pokemon card from API.
 async function loadPokemonPairs(totalPairsInput, timerInput) {
     clearInterval(timerInterval);
     clickCount = 0;
@@ -51,6 +52,7 @@ async function loadPokemonPairs(totalPairsInput, timerInput) {
     startTimer();
 }
 
+//This is setup function to flip and check if the cards are fair or not.
 function setup() {
     let firstCard = undefined;
     let secondCard = undefined;
@@ -64,12 +66,9 @@ function setup() {
 
         clickCount++;
         updateStatus();
+
         if (!firstCard) {
-            isFlipping = true;
             firstCard = $(this).find(".front_face")[0];
-            $(this).one("transitionend", () => {
-                isFlipping = false;
-            });
         }
         else {
             isFlipping = true;
@@ -107,6 +106,7 @@ function setup() {
     });
 }
 
+// This is function to update status when clicked or matched.
 function updateStatus() {
     document.getElementById("clicks").textContent = clickCount;
     document.getElementById("matched").textContent = matchedPairs;
@@ -114,6 +114,7 @@ function updateStatus() {
     document.getElementById("total").textContent = totalPairs;
 }
 
+// This is timer function
 function startTimer() {
     document.getElementById("timer").textContent = timer;
 
@@ -131,6 +132,7 @@ function startTimer() {
     }, 1000);
 }
 
+// This is function for start button
 document.getElementById("start_button").addEventListener("click", () => {
     document.getElementById("status_message").textContent = "";
     document.getElementById("start_button").style.display = "none";
@@ -139,6 +141,7 @@ document.getElementById("start_button").addEventListener("click", () => {
     loadPokemonPairs(settings.pairs, settings.time);
 });
 
+// This is function for reset button
 document.getElementById("reset_button").addEventListener("click", () => {
     clickCount = 0;
     matchedPairs = 0;
@@ -153,6 +156,7 @@ document.getElementById("reset_button").addEventListener("click", () => {
     loadPokemonPairs();
 });
 
+// This is function to set difficulty
 function getDifficultySettings() {
     const difficulty = document.getElementById("difficulty").value;
 
@@ -165,6 +169,7 @@ function getDifficultySettings() {
             return { pairs: 10, time: 120 };
     }
 }
+// This is event light/dark mode theme.
 document.getElementById("light_mode_button").addEventListener("click", () => {
     document.getElementById("game_grid").style.backgroundColor = "white";
 });
@@ -173,6 +178,7 @@ document.getElementById("dark_mode_button").addEventListener("click", () => {
     document.getElementById("game_grid").style.backgroundColor = "black";
 });
 
+// This is layout function to change size of container.
 function applyGridLayout(pairs) {
     const grid = document.getElementById("game_grid");
     const cards = document.querySelectorAll(".card");
@@ -192,6 +198,7 @@ function applyGridLayout(pairs) {
     }
 }
 
+// This is powerup function to reveal all card for 5 second.
 document.getElementById("powerup_button").addEventListener("click", () => {
     if (gameOver) return;
     document.getElementById("powerup_button").style.display = "none";
