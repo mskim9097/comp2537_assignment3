@@ -145,7 +145,6 @@ document.getElementById("start_button").addEventListener("click", () => {
 document.getElementById("reset_button").addEventListener("click", () => {
     clickCount = 0;
     matchedPairs = 0;
-    timer = 30;
     gameOver = false;
     clearInterval(timerInterval);
 
@@ -154,6 +153,11 @@ document.getElementById("reset_button").addEventListener("click", () => {
     document.getElementById("start_button").style.display = "inline";
     document.getElementById("powerup_button").style.display = "inline";
     loadPokemonPairs();
+    const settings = getDifficultySettings();
+    document.getElementById("total").textContent = settings.pairs;
+    document.getElementById("left").textContent = settings.pairs;
+    document.getElementById("timer").textContent = settings.time;
+
 });
 
 // This is function to set difficulty
