@@ -1,7 +1,7 @@
 let clickCount = 0;
 let matchedPairs = 0;
 let totalPairs = 3;
-let timer = 30;
+let timer = 20;
 let timerInterval = null;
 let gameOver = false;
 
